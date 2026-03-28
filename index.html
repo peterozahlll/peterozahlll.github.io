@@ -3,6 +3,8 @@ layout: default
 title: "Peter Ozahl"
 ---
 
+<canvas id="bg-canvas"></canvas>
+
 <div class="container">
   <header class="topbar">
     <div>
@@ -63,7 +65,7 @@ title: "Peter Ozahl"
   </section>
 
   <section class="section">
-    <h2>Mis repositorios</h2>
+    <h2>My Reps</h2>
     <div class="toolbar">
       <input id="q" class="input" placeholder="Buscar repositorios..." />
       <select id="sort" class="select">
@@ -205,4 +207,54 @@ title: "Peter Ozahl"
     document.getElementById("repos").innerHTML = `<div class="muted">${err.message}</div>`;
     console.error(err);
   });
+</script>
+
+<script>
+  (function(){
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, lines;
+
+    function resize(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      init();
+    }
+
+    function init(){
+      lines = Array.from({length: 14}, (_, i) => ({
+        offset: (H / 14) * i,
+        speed:  0.18 + (i * 0.03),
+        amp:    50 + (i % 3) * 35,
+        freq:   0.0018 + (i % 4) * 0.0008,
+        phase:  i * 0.7,
+        alpha:  0.07 + (i % 3) * 0.04,
+        width:  0.8 + (i % 3) * 0.6,
+        color:  ['#4F54AA','#7785DD','#31376A','#A7C0E8','#161A34'][i % 5]
+      }));
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      lines.forEach(l => {
+        l.phase += l.speed * 0.007;
+        ctx.beginPath();
+        ctx.lineWidth = l.width;
+        ctx.strokeStyle = l.color;
+        ctx.globalAlpha = l.alpha;
+        const step = 5;
+        for(let x = -step; x <= W + step; x += step){
+          const y = l.offset + x * 0.5 + Math.sin(x * l.freq + l.phase) * l.amp;
+          x === -step ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+  })();
 </script>
