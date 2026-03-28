@@ -29,7 +29,7 @@ body{
 .topbar{
   display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
   padding:24px;border:2px solid var(--line);border-radius:var(--radius);
-  box-shadow: var(--shadow), var(--shadow-lg), 0 0 0 1px rgba(79,84,170,.10);
+  box-shadow: var(--shadow), var(--shadow-lg), 0 0 0 1px #4f54aa1a;
   background: #7659AB;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
