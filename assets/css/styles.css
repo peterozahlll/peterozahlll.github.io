@@ -131,8 +131,8 @@ body{
 }
 
 .btn:hover {
-  background-color: #9a3ddba2; 
-  color: #cdc8ee;            
+  background-color: #9a3ddba2;
+  color: #cdc8ee;
 }
 
 .btn.active{border-color:#4F54AA;
