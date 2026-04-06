@@ -6,7 +6,7 @@
   --line:#31376A;
   --brand:#4F54AA;
   --brand2:#7785DD;
-  --shadow: 0 16px 50px rgba(0,1,2,.40);
+  --shadow: 0 16px 50px rgba(34, 87, 139, 0.664);
   --shadow-md: 0 8px 32px rgba(79,84,170,.18);
   --shadow-lg: 0 20px 60px rgba(49,55,106,.35);
   --radius: 18px;
@@ -83,7 +83,7 @@ body{
 }
 
 .card:hover {
-  background-color: #2c0e41; 
+  background-color: #522f6b; 
   color: #cdc8ee;            
 }
 
